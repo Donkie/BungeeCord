@@ -19,3 +19,8 @@ jobs:
         java-version: ${{ matrix.java }}
     - run: java -version && mvn --version
     - run: mvn --activate-profiles dist --no-transfer-progress package
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: staging
